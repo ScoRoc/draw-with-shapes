@@ -2,24 +2,22 @@ import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import Canvas from './Canvas';
-
-export default CanvasFrame = props => {
-
-  const { height, width } = props.size;
+export default Canvas = props => {
 
   return (
-    <View style={[ styles.screen, {height, width} ]}>
-      <Canvas />
+    <View style={styles.screen}>
+      <Text style={styles.text}>I'm Canvas</Text>
     </View>
   )
 };
 
 const styles = EStyleSheet.create({
   screen: {
+    height: '92%',
+    width: '92%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '$darkGray'
+    backgroundColor: '#fff'
   },
   text: {
     color: '#f3a',

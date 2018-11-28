@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default SideTray = props => {
 
@@ -7,15 +8,15 @@ export default SideTray = props => {
 
   return (
     <View style={[ styles.screen, {height, width} ]}>
-      <Text>Side tray</Text>
+      <Text style={{color: '#f3a', fontWeight: 'bold'}}>Side tray</Text>
     </View>
   )
 };
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   screen: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f3a'
+    backgroundColor: '$lightGray'
   }
 });
