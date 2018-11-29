@@ -9,40 +9,40 @@ export default class TileWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideOut: false,
+      isTrayOpen: false,
       slideOutTrayWidth: 0,
       animatedWidth: 0
     }
   }
 
   animateSlide = () => {
-    const { slideOut, trayWidth } = this.state;
-    const toValue = slideOut ? this.props.sideTrayWidth : trayWidth;
+    const { isTrayOpen, slideOutTrayWidth, animatedWidth } = this.state;
+    const { sideTrayWidth } = this.props;
+    const toValue = isTrayOpen ? -slideOutTrayWidth + sideTrayWidth : sideTrayWidth;
     Animated.timing(
-      this.state.trayWidthAnim,
+      animatedWidth,
       {
-        toValue: this.props.sideTrayWidth,
+        toValue: toValue,
         duration: 250
       }
     ).start();
   }
-
 
   setSlideOutTrayWidth = width => {
     console.log('width: ', width);
     this.setState({
       slideOutTrayWidth: width,
       animatedWidth: new Animated.Value(-width + this.props.sideTrayWidth)
-    })
+    });
   }
 
   handlePress = () => {
-    this.setState({slideOut: !this.state.slideOut});
+    this.animateSlide();
+    this.setState({isTrayOpen: !this.state.isTrayOpen});
   }
 
   render() {
-    // const { animatedWidth } = this.state;
-    const animatedWidth = this.state.slideOut ? this.props.sideTrayWidth : this.state.animatedWidth;
+    const { animatedWidth } = this.state;
     return (
       <View>
         <Animated.View style={[ styles.slideOutTray, {transform: [{translateX: animatedWidth}]} ]}>
