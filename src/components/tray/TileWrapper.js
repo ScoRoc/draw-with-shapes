@@ -29,7 +29,6 @@ export default class TileWrapper extends React.Component {
   }
 
   setSlideOutTrayWidth = width => {
-    console.log('width: ', width);
     this.setState({
       slideOutTrayWidth: width,
       animatedWidth: new Animated.Value(-width + this.props.sideTrayWidth)
@@ -37,8 +36,18 @@ export default class TileWrapper extends React.Component {
   }
 
   handlePress = () => {
+    this.props.setFocus(this.props.idx);
     this.animateSlide();
     this.setState({isTrayOpen: !this.state.isTrayOpen});
+  }
+
+  componentDidUpdate() {
+    const { isTrayOpen } = this.state;
+    const { focused, idx } = this.props;
+    if (isTrayOpen && focused !== idx) {
+      this.animateSlide();
+      this.setState({isTrayOpen: false});
+    }
   }
 
   render() {
