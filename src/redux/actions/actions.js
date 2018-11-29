@@ -1,8 +1,9 @@
-import { TEST } from '../constants/action-types';
+import { SET_COLOR } from '../constants/action-types';
 
-export const testTest = tester => (
+export const setColor = (color, colorType) => (
   {
-    type: TEST,
-    tester
+    type: SET_COLOR,
+    color,
+    colorType
   }
 );
