@@ -1,6 +1,9 @@
+import { Dimensions } from 'react-native';
+
 import { TEST } from '../constants/action-types';
 
 const initialState = {
+  tileHeight: Dimensions.get('window').height / 7,
   tester: 'foo test'
 };
 

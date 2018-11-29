@@ -5,8 +5,8 @@ import { SafeAreaView } from 'react-navigation';
 // import { connect } from 'react-redux';
 // import { testTest } from '../redux/actions/actions';
 
-import SideTray from '../components/SideTray';
-import CanvasFrame from '../components/CanvasFrame';
+import SideTray from '../components/tray/SideTray';
+import CanvasFrame from '../components/canvas/CanvasFrame';
 
 export default MainScreen = props => {
 // const MainScreen = props => {
