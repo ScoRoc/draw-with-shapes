@@ -1,53 +1,20 @@
 import React from 'react';
-import { Animated, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Tile from './Tile';
 
 export default class SlideOutTray extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      slideOut: false,
-      trayWidth: 0,
-      slideAnim: new Animated.Value()
-    }
-  }
-
-  animateSlide = () => {
-    Animated.timing(
-      this.state.slideAnim,
-      {
-        toValue: this.state.trayWidth,
-        duration: 250
-      }
-    ).start();
-  }
 
   onLayout = ({nativeEvent}) => {
-    this.setState({ trayWidth: nativeEvent.layout.width });
-  }
-
-  componentDidUpdate() {
-    if (this.state.slideOut !== this.props.slideOut) {
-      this.setState({slideOut: this.props.slideOut})
-    }
-  }
-
-  componentDidMount() {
-    this.setState({slideOut: this.props.slideOut})
+    this.props.setWidth(nativeEvent.layout.width);
   }
 
   render() {
-    const { slideOut, trayWidth, slideAnim } = this.state;
-    const shift = slideOut
-                ? { transform: [{translateX: this.props.sideTrayWidth}] }
-                : { transform: [{translateX: -trayWidth}] };
-
     return (
-      <Animated.View
+      <View
         onLayout={e => this.onLayout(e)}
-        style={[ styles.tray, shift ]}
+        style={styles.tray}
       >
         <Tile slide={true} text='one' />
         <Tile slide={true} text='two' />
@@ -55,15 +22,13 @@ export default class SlideOutTray extends React.Component {
         <Tile slide={true} text='four' />
         <Tile slide={true} text='five' />
         <Tile slide={true} text='six' />
-      </Animated.View>
+      </View>
     )
-
   }
 };
 
 const styles = EStyleSheet.create({
   tray: {
-    position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'yellow',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Animated, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import SlideOutTray from './SlideOutTray';
@@ -9,22 +9,48 @@ export default class TileWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideOut: false
+      slideOut: false,
+      slideOutTrayWidth: 0,
+      animatedWidth: 0
     }
   }
 
+  animateSlide = () => {
+    const { slideOut, trayWidth } = this.state;
+    const toValue = slideOut ? this.props.sideTrayWidth : trayWidth;
+    Animated.timing(
+      this.state.trayWidthAnim,
+      {
+        toValue: this.props.sideTrayWidth,
+        duration: 250
+      }
+    ).start();
+  }
+
+
+  setSlideOutTrayWidth = width => {
+    console.log('width: ', width);
+    this.setState({
+      slideOutTrayWidth: width,
+      animatedWidth: new Animated.Value(-width + this.props.sideTrayWidth)
+    })
+  }
+
   handlePress = () => {
-    this.setState({slideOut: !this.state.slideOut})
+    this.setState({slideOut: !this.state.slideOut});
   }
 
   render() {
-
+    // const { animatedWidth } = this.state;
+    const animatedWidth = this.state.slideOut ? this.props.sideTrayWidth : this.state.animatedWidth;
     return (
       <View>
-        <SlideOutTray
-          slideOut={this.state.slideOut}
-          sideTrayWidth={this.props.sideTrayWidth}
-        />
+        <Animated.View style={[ styles.slideOutTray, {transform: [{translateX: animatedWidth}]} ]}>
+          <SlideOutTray
+            setWidth={this.setSlideOutTrayWidth}
+            sideTrayWidth={this.props.sideTrayWidth}
+          />
+        </Animated.View>
         <Tile handlePress={this.handlePress} text={this.props.text} />
       </View>
     )
@@ -32,14 +58,7 @@ export default class TileWrapper extends React.Component {
 };
 
 const styles = EStyleSheet.create({
-  tray: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    backgroundColor: 'orange',
-    zIndex: 50
+  slideOutTray: {
+    position: 'absolute'
   }
 });
