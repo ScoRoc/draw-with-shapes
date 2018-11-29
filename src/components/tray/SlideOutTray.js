@@ -8,8 +8,24 @@ export default class SlideOutTray extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideOut: false
+      slideOut: false,
+      trayWidth: 0,
+      slideAnim: new Animated.Value()
     }
+  }
+
+  animateSlide = () => {
+    Animated.timing(
+      this.state.slideAnim,
+      {
+        toValue: this.state.trayWidth,
+        duration: 250
+      }
+    ).start();
+  }
+
+  onLayout = ({nativeEvent}) => {
+    this.setState({ trayWidth: nativeEvent.layout.width });
   }
 
   componentDidUpdate() {
@@ -23,11 +39,16 @@ export default class SlideOutTray extends React.Component {
   }
 
   render() {
-
-    const shift = this.state.slideOut ? {left: this.props.sideTrayWidth} : {right: 0};
+    const { slideOut, trayWidth, slideAnim } = this.state;
+    const shift = slideOut
+                ? { transform: [{translateX: this.props.sideTrayWidth}] }
+                : { transform: [{translateX: -trayWidth}] };
 
     return (
-      <Animated.View style={[ styles.tray, shift ]}>
+      <Animated.View
+        onLayout={e => this.onLayout(e)}
+        style={[ styles.tray, shift ]}
+      >
         <Tile slide={true} text='one' />
         <Tile slide={true} text='two' />
         <Tile slide={true} text='three' />
