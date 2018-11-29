@@ -1,11 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { connect } from 'react-redux';
 
-export default Canvas = props => {
+const Canvas = props => {
 
   return (
-    <View style={styles.canvas}>
+    <View style={[ styles.canvas, {backgroundColor: props.canvasColor} ]}>
       <Text style={styles.text}>I'm Canvas</Text>
     </View>
   )
@@ -17,10 +18,15 @@ const styles = EStyleSheet.create({
     width: '92%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff'
   },
   text: {
     color: '#f3a',
     fontSize: '20rem'
   }
 });
+
+const mapStateToProps = state => {
+  return { canvasColor: state.main.canvasColor };
+};
+
+export default connect(mapStateToProps)(Canvas);
