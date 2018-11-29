@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Animated, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Tile from './Tile';
@@ -27,14 +27,14 @@ export default class SlideOutTray extends React.Component {
     const shift = this.state.slideOut ? {left: this.props.sideTrayWidth} : {right: 0};
 
     return (
-      <View style={[ styles.tray, shift ]}>
+      <Animated.View style={[ styles.tray, shift ]}>
         <Tile slide={true} text='one' />
         <Tile slide={true} text='two' />
         <Tile slide={true} text='three' />
         <Tile slide={true} text='four' />
         <Tile slide={true} text='five' />
         <Tile slide={true} text='six' />
-      </View>
+      </Animated.View>
     )
 
   }
