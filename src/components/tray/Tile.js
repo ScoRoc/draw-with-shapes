@@ -8,7 +8,7 @@ const Tile = props => {
   const width = props.slide ? 80 : '100%';
   return (
     <TouchableHighlight
-      onPress={() => console.log('pressed')}
+      onPress={() => props.handlePress()}
       activeOpacity={.6}
       underlayColor='#3cd'
     >

@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Canvas from './Canvas';
-import SlideOutTrayWrapper from '../tray/SlideOutTrayWrapper';
 
 export default CanvasFrame = props => {
 
@@ -12,7 +11,6 @@ export default CanvasFrame = props => {
   return (
     <View style={[ styles.frame, {height, width} ]}>
       <Canvas />
-      <SlideOutTrayWrapper />
     </View>
   )
 };

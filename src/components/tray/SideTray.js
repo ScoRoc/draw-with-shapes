@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import Tile from './Tile';
+import TileWrapper from './TileWrapper';
 
 export default SideTray = props => {
 
@@ -10,12 +10,12 @@ export default SideTray = props => {
 
   return (
     <View style={[ styles.tray, {height, width} ]}>
-      <Tile text='color' />
-      <Tile text='bgColor' />
-      <Tile text='shape' />
-      <Tile text='tool' />
-      <Tile text='clear all' />
-      <Tile text='settings' />
+      <TileWrapper sideTrayWidth={width} text='color' />
+      <TileWrapper sideTrayWidth={width} text='bgColor' />
+      <TileWrapper sideTrayWidth={width} text='shape' />
+      <TileWrapper sideTrayWidth={width} text='tool' />
+      <TileWrapper sideTrayWidth={width} text='clear all' />
+      <TileWrapper sideTrayWidth={width} text='settings' />
     </View>
   )
 };

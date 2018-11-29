@@ -5,31 +5,44 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Tile from './Tile';
 
 export default class SlideOutTray extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      slideOut: false
+    }
+  }
 
-  handleLayout = e => {
-    console.log('yoo')
-    console.log('e: ', e);
-    // this.setState({
-    //   width: e.nativeEvent.layout.width;
-    // });
+  componentDidUpdate() {
+    if (this.state.slideOut !== this.props.slideOut) {
+      this.setState({slideOut: this.props.slideOut})
+    }
+  }
+
+  componentDidMount() {
+    this.setState({slideOut: this.props.slideOut})
   }
 
   render() {
+
+    const shift = this.state.slideOut ? {left: this.props.sideTrayWidth} : {right: 0};
+
     return (
-      <View onLayout={this.handleLayout} style={styles.tray}>
-        <Tile slide={true} text='color' />
-        <Tile slide={true} text='bgColor' />
-        <Tile slide={true} text='shape' />
-        <Tile slide={true} text='tool' />
-        <Tile slide={true} text='clear all' />
-        <Tile slide={true} text='settings' />
+      <View style={[ styles.tray, shift ]}>
+        <Tile slide={true} text='one' />
+        <Tile slide={true} text='two' />
+        <Tile slide={true} text='three' />
+        <Tile slide={true} text='four' />
+        <Tile slide={true} text='five' />
+        <Tile slide={true} text='six' />
       </View>
     )
+
   }
-}
+};
 
 const styles = EStyleSheet.create({
   tray: {
+    position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'yellow',
