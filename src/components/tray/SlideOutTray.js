@@ -14,8 +14,7 @@ class SlideOutTray extends React.Component {
   }
 
   render() {
-    // console.log('props: ', this.props);
-    // this.props.setColor('red', 'activeColor');
+    // const handlePress = this.props.isColorTile ? this.props.setColor :
     return (
       <View
         onLayout={e => this.onLayout(e)}
@@ -23,7 +22,7 @@ class SlideOutTray extends React.Component {
       >
         <Tile
           handlePress={this.props.setColor}
-          isColorTile={this.props.isColorTile}
+          tileType={this.props.tileType}
           bgColor='red'
           colorType={this.props.colorType}
           slide={true}
@@ -31,7 +30,7 @@ class SlideOutTray extends React.Component {
         />
         <Tile
           handlePress={this.props.setColor}
-          isColorTile={this.props.isColorTile}
+          tileType={this.props.tileType}
           bgColor='orange'
           colorType={this.props.colorType}
           slide={true}
@@ -39,7 +38,7 @@ class SlideOutTray extends React.Component {
         />
         <Tile
           handlePress={this.props.setColor}
-          isColorTile={this.props.isColorTile}
+          tileType={this.props.tileType}
           bgColor='yellow'
           colorType={this.props.colorType}
           slide={true}
@@ -47,7 +46,7 @@ class SlideOutTray extends React.Component {
         />
         <Tile
           handlePress={this.props.setColor}
-          isColorTile={this.props.isColorTile}
+          tileType={this.props.tileType}
           bgColor='green'
           colorType={this.props.colorType}
           slide={true}
@@ -55,7 +54,7 @@ class SlideOutTray extends React.Component {
         />
         <Tile
           handlePress={this.props.setColor}
-          isColorTile={this.props.isColorTile}
+          tileType={this.props.tileType}
           bgColor='blue'
           colorType={this.props.colorType}
           slide={true}
@@ -63,7 +62,7 @@ class SlideOutTray extends React.Component {
         />
         <Tile
           handlePress={this.props.setColor}
-          isColorTile={this.props.isColorTile}
+          tileType={this.props.tileType}
           bgColor='purple'
           colorType={this.props.colorType}
           slide={true}
@@ -71,7 +70,7 @@ class SlideOutTray extends React.Component {
         />
         <Tile
           handlePress={this.props.setColor}
-          isColorTile={this.props.isColorTile}
+          tileType={this.props.tileType}
           bgColor='white'
           colorType={this.props.colorType}
           slide={true}
@@ -79,7 +78,7 @@ class SlideOutTray extends React.Component {
         />
         <Tile
           handlePress={this.props.setColor}
-          isColorTile={this.props.isColorTile}
+          tileType={this.props.tileType}
           bgColor='black'
           colorType={this.props.colorType}
           slide={true}

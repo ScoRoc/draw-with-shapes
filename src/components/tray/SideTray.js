@@ -24,7 +24,7 @@ class SideTray extends React.Component {
       <View style={[ styles.tray, {height, width} ]}>
         <TileWrapper
           idx={1}
-          isColorTile={true}
+          tileType='color'
           colorType='activeColor'
           bgColor={this.props.activeColor}
           setFocus={this.setFocus}
@@ -34,7 +34,7 @@ class SideTray extends React.Component {
         />
         <TileWrapper
           idx={2}
-          isColorTile={true}
+          tileType='bg'
           colorType={'canvasColor'}
           bgColor={this.props.canvasColor}
           setFocus={this.setFocus}
@@ -44,7 +44,7 @@ class SideTray extends React.Component {
         />
         <TileWrapper
           idx={3}
-          isColorTile={false}
+          tileType='shape'
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
@@ -52,7 +52,7 @@ class SideTray extends React.Component {
         />
         <TileWrapper
           idx={4}
-          isColorTile={false}
+          tileType='tool'
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
@@ -60,7 +60,7 @@ class SideTray extends React.Component {
         />
         <TileWrapper
           idx={5}
-          isColorTile={false}
+          tileType='clear'
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
@@ -68,7 +68,7 @@ class SideTray extends React.Component {
         />
         <TileWrapper
           idx={6}
-          isColorTile={false}
+          tileType='settings'
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}

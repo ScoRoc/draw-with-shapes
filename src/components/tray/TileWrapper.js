@@ -52,18 +52,19 @@ export default class TileWrapper extends React.Component {
 
   render() {
     const { animatedWidth } = this.state;
+    const defaultTileBGColor = 'green';
     return (
       <View>
         <Animated.View style={[ styles.slideOutTray, {transform: [{translateX: animatedWidth}]} ]}>
           <SlideOutTray
             text={this.props.text}
             colorType={this.props.colorType}
-            isColorTile={this.props.isColorTile}
+            tileType={this.props.tileType}
             setWidth={this.setSlideOutTrayWidth}
             sideTrayWidth={this.props.sideTrayWidth}
           />
         </Animated.View>
-        <Tile isColorTile={this.props.isColorTile} bgColor={this.props.bgColor || 'green'} handlePress={this.handlePress} text={this.props.text} />
+        <Tile tileType={this.props.tileType} bgColor={this.props.bgColor || defaultTileBGColor} handlePress={this.handlePress} text={this.props.text} />
       </View>
     )
   }

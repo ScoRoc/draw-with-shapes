@@ -3,20 +3,33 @@ import { TouchableHighlight, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
+import Icon from './Icon';
+
 const Tile = props => {
   // FIX WIDTH
-  const { bgColor, colors, colorType, height, isColorTile, slide, text } = props;
+  const { bgColor, colors, colorType, height, slide, text, tileType } = props;
   const width = slide ? 80 : '100%';
-  const backgroundColor = isColorTile ? colors[bgColor] : colors.green;
+  const backgroundColor = tileType === 'color' || tileType === 'bg' ? colors[bgColor] : colors.green;
   const color = bgColor === 'white' || bgColor === 'yellow' ? colors.black : colors.white;
+  const adjustHandlePress = () => {
+    switch (tileType) {
+      case 'color':
+      case 'bg':
+        return () => props.handlePress(backgroundColor, colorType);
+      default:
+        return () => props.handlePress();
+    }
+  }
+  const handlePress = adjustHandlePress();
   return (
     <TouchableHighlight
-      onPress={() => props.handlePress(backgroundColor, colorType)}
+      onPress={handlePress}
       activeOpacity={.6}
       underlayColor='#3cd'
     >
       <View style={[ styles.tile, {height, width, backgroundColor} ]}>
-        <Text style={[ styles.tileText, {color} ]}>{text || ''}</Text>
+        {/* <Text style={[ styles.tileText, {color} ]}>{text || ''}</Text> */}
+        <Icon />
       </View>
     </TouchableHighlight>
   )
