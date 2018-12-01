@@ -25,11 +25,7 @@ class SlideOutTray extends React.Component {
         <Tile
           key={i}
           handlePress={() => this.props.setColor(color, this.props.colorType)}
-          tileType={this.props.tileType}
           backgroundColor={bgColor}
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
           height={this.props.height}
           width={80}
         >
