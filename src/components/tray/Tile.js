@@ -1,55 +1,36 @@
 import React from 'react';
-import { TouchableHighlight, Text, View } from 'react-native';
+import { StyleSheet, TouchableHighlight, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { connect } from 'react-redux';
 
-const Tile = props => {
-  // FIX WIDTH
-  const { bgColor, colors, colorType, height, slide, text, tileType } = props;
-  const width = slide ? 80 : '100%';
-  const backgroundColor = tileType === 'color' || tileType === 'bg' ? colors[bgColor] : colors.green;
-  const color = bgColor === 'white' || bgColor === 'yellow' ? colors.black : colors.white;
-  const adjustHandlePress = () => {
-    switch (tileType) {
-      case 'color':
-      case 'bg':
-        return () => props.handlePress(backgroundColor, colorType);
-      default:
-        return () => props.handlePress();
-    }
-  }
-  const handlePress = adjustHandlePress();
-  // const inner = props.icon || <Text style={[ styles.tileText, {color} ]}>{text || ''}</Text>;
+export default Tile = props => {
+  const { backgroundColor, height, width } = props;
   return (
     <TouchableHighlight
-      onPress={handlePress}
+      onPress={props.handlePress}
       activeOpacity={.6}
       underlayColor='#3cd'
     >
       <View style={[ styles.tile, {height, width, backgroundColor} ]}>
-        <Text style={[ styles.tileText, {color} ]}>{props.icon || text || ''}</Text>
-        {/* <Icon /> */}
-        {/* {inner} */}
+        {props.children}
       </View>
     </TouchableHighlight>
   )
 };
 
-const styles = EStyleSheet.create({
+// const styles = EStyleSheet.create({
+//   tile: {
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     borderColor: 'black',
+//     borderWidth: 1
+//   }
+// });
+
+const styles = StyleSheet.create({
   tile: {
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'black',
     borderWidth: 1
-  },
-  tileText: {
-    fontSize: '20rem',
-    fontWeight: 'bold'
   }
 });
-
-const mapStateToProps = state => {
-  return { height: state.main.tileHeight, colors: state.colors }
-};
-
-export default connect(mapStateToProps)(Tile);

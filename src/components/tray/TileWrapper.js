@@ -66,7 +66,7 @@ class TileWrapper extends React.Component {
             sideTrayWidth={this.props.sideTrayWidth}
           />
         </Animated.View>
-        <Tile2
+        <Tile
           tileType={this.props.tileType}
           backgroundColor={this.props.bgColor}
           handlePress={this.handlePress}
@@ -74,13 +74,7 @@ class TileWrapper extends React.Component {
           width='100%'
         >
           {this.props.icon || this.props.text}
-        </Tile2>
-        {/* <Tile
-          tileType={this.props.tileType}
-          bgColor={this.props.bgColor || defaultTileBGColor}
-          handlePress={this.handlePress}
-          text={this.props.text}
-        /> */}
+        </Tile>
       </View>
     )
   }

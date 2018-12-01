@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import TileWrapper from './TileWrapper';
 import Icon from './Icon';
 
+const innerText = ['', 'BG', 'shape', 'tool', 'clear all', 'settings'];
+
 class SideTray extends React.Component {
   constructor(props) {
     super(props);
@@ -24,8 +26,10 @@ class SideTray extends React.Component {
     const icon = <Icon />
 
     const color = 'black';
-    const text = <Text style={[ styles.tileText, {color} ]}>text here</Text>
-    const textTop = <Text style={[ styles.tileText, {color} ]}>BG</Text>
+    // const color = canvasColor === 'white' || canvasColor === 'yellow' ? colors.black : colors.white;
+    const text = innerText.map((text, i) => (
+       <Text key={i} style={[ styles.tileText, {color} ]}>{text}</Text>
+    ));
     return (
       <View style={[ styles.tray, {height, width} ]}>
         <TileWrapper
@@ -37,7 +41,7 @@ class SideTray extends React.Component {
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
           // text='color'
-          text={text}
+          text={text[0]}
         />
         <TileWrapper
           idx={2}
@@ -48,7 +52,7 @@ class SideTray extends React.Component {
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
           // text='BG'
-          text={textTop}
+          text={text[1]}
         />
         <TileWrapper
           idx={3}
@@ -58,7 +62,7 @@ class SideTray extends React.Component {
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
           // text='shape'
-          text={text}
+          text={text[2]}
           icon={icon}
         />
         <TileWrapper
@@ -69,7 +73,7 @@ class SideTray extends React.Component {
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
           // text='tool'
-          text={text}
+          text={text[3]}
           icon={icon}
         />
         <TileWrapper
@@ -80,7 +84,7 @@ class SideTray extends React.Component {
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
           // text='clear all'
-          text={text}
+          text={text[4]}
           icon={icon}
         />
         <TileWrapper
@@ -90,7 +94,7 @@ class SideTray extends React.Component {
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
-          text={text}
+          text={text[5]}
           icon={icon}
         />
       </View>
@@ -111,8 +115,8 @@ const styles = EStyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { canvasColor, activeColor } = state.main;
-  return { canvasColor, activeColor };
+  const { canvasColor, activeColor, colors } = state.main;
+  return { canvasColor, activeColor, colors };
 };
 
 export default connect(mapStateToProps)(SideTray);
