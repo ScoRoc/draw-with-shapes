@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { setColor } from '../../redux/actions/actions';
 
 import Tile from './Tile';
-import Tile2 from './Tile2';
 
 // const bgColors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'white', 'black'];
 
@@ -44,78 +43,6 @@ class SlideOutTray extends React.Component {
         style={styles.tray}
       >
         {tiles}
-        {/* <Tile
-          handlePress={this.props.setColor}
-          tileType={this.props.tileType}
-          bgColor='red'
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
-          width={80}
-        />
-        <Tile
-          handlePress={this.props.setColor}
-          tileType={this.props.tileType}
-          bgColor='orange'
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
-          width={80}
-        />
-        <Tile
-          handlePress={this.props.setColor}
-          tileType={this.props.tileType}
-          bgColor='yellow'
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
-          width={80}
-        />
-        <Tile
-          handlePress={this.props.setColor}
-          tileType={this.props.tileType}
-          bgColor='green'
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
-          width={80}
-        />
-        <Tile
-          handlePress={this.props.setColor}
-          tileType={this.props.tileType}
-          bgColor='blue'
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
-          width={80}
-        />
-        <Tile
-          handlePress={this.props.setColor}
-          tileType={this.props.tileType}
-          bgColor='purple'
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
-          width={80}
-        />
-        <Tile
-          handlePress={this.props.setColor}
-          tileType={this.props.tileType}
-          bgColor='white'
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
-          width={80}
-        />
-        <Tile
-          handlePress={this.props.setColor}
-          tileType={this.props.tileType}
-          bgColor='black'
-          colorType={this.props.colorType}
-          slide={true}
-          text={this.props.text}
-          width={80}
-        /> */}
       </View>
     )
   }

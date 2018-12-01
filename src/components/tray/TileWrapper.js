@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 import SlideOutTray from './SlideOutTray';
 import Tile from './Tile';
-import Tile2 from './Tile2';
 
 class TileWrapper extends React.Component {
   constructor(props) {
