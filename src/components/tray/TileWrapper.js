@@ -62,11 +62,9 @@ class TileWrapper extends React.Component {
             colorType={this.props.colorType}
             tileType={this.props.tileType}
             setWidth={this.setSlideOutTrayWidth}
-            sideTrayWidth={this.props.sideTrayWidth}
           />
         </Animated.View>
         <Tile
-          tileType={this.props.tileType}
           backgroundColor={this.props.bgColor}
           handlePress={this.handlePress}
           height={this.props.height}
