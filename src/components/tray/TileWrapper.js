@@ -59,7 +59,7 @@ class TileWrapper extends React.Component {
       <View>
         <Animated.View style={[ styles.slideOutTray, {transform: [{translateX: animatedWidth}]} ]}>
           <SlideOutTray
-            text={this.props.text}
+            inner={this.props.text || this.props.icon}
             colorType={this.props.colorType}
             tileType={this.props.tileType}
             setWidth={this.setSlideOutTrayWidth}

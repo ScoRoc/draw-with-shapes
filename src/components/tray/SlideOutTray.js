@@ -34,7 +34,7 @@ class SlideOutTray extends React.Component {
           height={this.props.height}
           width={80}
         >
-          <Icon />
+          {this.props.inner}
         </Tile>
       );
     });
