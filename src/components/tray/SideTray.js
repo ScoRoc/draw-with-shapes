@@ -4,6 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
 import TileWrapper from './TileWrapper';
+import Icon from './Icon';
 
 class SideTray extends React.Component {
   constructor(props) {
@@ -19,7 +20,12 @@ class SideTray extends React.Component {
 
   render() {
     const { height, width } = this.props.size;
-    const text = 'BG';
+    // const text = 'BG';
+    const icon = <Icon />
+
+    const color = 'black';
+    const text = <Text style={[ styles.tileText, {color} ]}>text here</Text>
+    const textTop = <Text style={[ styles.tileText, {color} ]}>BG</Text>
     return (
       <View style={[ styles.tray, {height, width} ]}>
         <TileWrapper
@@ -30,7 +36,8 @@ class SideTray extends React.Component {
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
-          text='color'
+          // text='color'
+          text={text}
         />
         <TileWrapper
           idx={2}
@@ -40,39 +47,51 @@ class SideTray extends React.Component {
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
-          text={text}
+          // text='BG'
+          text={textTop}
         />
         <TileWrapper
           idx={3}
           tileType='shape'
+          bgColor='green'
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
-          text='shape'
+          // text='shape'
+          text={text}
+          icon={icon}
         />
         <TileWrapper
           idx={4}
           tileType='tool'
+          bgColor='green'
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
-          text='tool'
+          // text='tool'
+          text={text}
+          icon={icon}
         />
         <TileWrapper
           idx={5}
           tileType='clear'
+          bgColor='green'
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
-          text='clear all'
+          // text='clear all'
+          text={text}
+          icon={icon}
         />
         <TileWrapper
           idx={6}
           tileType='settings'
+          bgColor='green'
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
-          text='settings'
+          text={text}
+          icon={icon}
         />
       </View>
     )
@@ -84,6 +103,10 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '$lightGray',
     zIndex: 100
+  },
+  tileText: {
+    fontSize: '20rem',
+    fontWeight: 'bold'
   }
 });
 

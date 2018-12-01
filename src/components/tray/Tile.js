@@ -3,8 +3,6 @@ import { TouchableHighlight, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
-import Icon from './Icon';
-
 const Tile = props => {
   // FIX WIDTH
   const { bgColor, colors, colorType, height, slide, text, tileType } = props;
@@ -21,6 +19,7 @@ const Tile = props => {
     }
   }
   const handlePress = adjustHandlePress();
+  // const inner = props.icon || <Text style={[ styles.tileText, {color} ]}>{text || ''}</Text>;
   return (
     <TouchableHighlight
       onPress={handlePress}
@@ -28,8 +27,9 @@ const Tile = props => {
       underlayColor='#3cd'
     >
       <View style={[ styles.tile, {height, width, backgroundColor} ]}>
-        {/* <Text style={[ styles.tileText, {color} ]}>{text || ''}</Text> */}
-        <Icon />
+        <Text style={[ styles.tileText, {color} ]}>{props.icon || text || ''}</Text>
+        {/* <Icon /> */}
+        {/* {inner} */}
       </View>
     </TouchableHighlight>
   )
