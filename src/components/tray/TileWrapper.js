@@ -12,7 +12,7 @@ class TileWrapper extends React.Component {
     this.state = {
       isTrayOpen: false,
       slideOutTrayWidth: 0,
-      animatedWidth: 0
+      animatedWidth: new Animated.Value(0)
     }
   }
 
@@ -31,9 +31,10 @@ class TileWrapper extends React.Component {
 
   setSlideOutTrayWidth = width => {
     this.setState({
-      slideOutTrayWidth: width,
-      animatedWidth: new Animated.Value(-width + this.props.sideTrayWidth)
+      slideOutTrayWidth: width
+      // animatedWidth: new Animated.Value(-width + this.props.sideTrayWidth)
     });
+    this.state.animatedWidth.setValue(-width + this.props.sideTrayWidth);
   }
 
   handlePress = () => {
@@ -46,6 +47,7 @@ class TileWrapper extends React.Component {
     const { isTrayOpen } = this.state;
     const { focused, idx } = this.props;
     if (isTrayOpen && focused !== idx) {
+      console.log('in if')
       this.animateSlide();
       this.setState({isTrayOpen: false});
     }

@@ -10,8 +10,10 @@ import Tile from './Tile';
 // const bgColors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'white', 'black'];
 
 class SlideOutTray extends React.Component {
+// const SlideOutTray = props => {
 
   onLayout = ({nativeEvent}) => {
+    // console.log('nativeEvent.layout: ', nativeEvent.layout);
     this.props.setWidth(nativeEvent.layout.width);
   }
 
