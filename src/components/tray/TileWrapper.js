@@ -3,6 +3,8 @@ import { Animated, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
+import { setColor } from '../../redux/actions/actions';
+
 import SlideOutTray from './SlideOutTray';
 import Tile from './Tile';
 
@@ -55,16 +57,30 @@ class TileWrapper extends React.Component {
 
   render() {
     const { animatedWidth } = this.state;
+    const { tileType } = this.props;
+    const tiles = Object.values(this.props.colors).map((color, i) => {
+      let bgColor = tileType === 'color' || tileType === 'bg' ? color : 'green';
+      return (
+        <Tile
+          key={i}
+          handlePress={() => this.props.setColor(color, this.props.colorType)}
+          backgroundColor={bgColor}
+          height={this.props.height}
+          width={80}
+        >
+          {this.props.text || this.props.icon}
+        </Tile>
+      );
+    });
     // const defaultTileBGColor = 'green';
     return (
       <View>
         <Animated.View style={[ styles.slideOutTray, {transform: [{translateX: animatedWidth}]} ]}>
           <SlideOutTray
-            inner={this.props.text || this.props.icon}
-            colorType={this.props.colorType}
-            tileType={this.props.tileType}
             setWidth={this.setSlideOutTrayWidth}
-          />
+          >
+            {tiles}
+          </SlideOutTray>
         </Animated.View>
         <Tile
           backgroundColor={this.props.bgColor}
@@ -89,4 +105,10 @@ const mapStateToProps = state => {
   return { height: state.main.tileHeight, colors: state.colors }
 };
 
-export default connect(mapStateToProps)(TileWrapper);
+const mapDispatchToProps = dispatch => {
+  return {
+    setColor: (color, colorType) => dispatch(setColor(color, colorType))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TileWrapper);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableHighlight, Text, View } from 'react-native';
+import { StyleSheet, TouchableHighlight, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default Tile = props => {
