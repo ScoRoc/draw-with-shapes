@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default Icon = props => {
   return (
-    <MaterialCommunityIcons name='square' size={32} color='black' />
+    <MaterialCommunityIcons name={props.icon} size={32} color='black' />
   )
 };
 

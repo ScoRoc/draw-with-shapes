@@ -49,7 +49,6 @@ class TileWrapper extends React.Component {
     const { isTrayOpen } = this.state;
     const { focused, idx } = this.props;
     if (isTrayOpen && focused !== idx) {
-      console.log('in if')
       this.animateSlide();
       this.setState({isTrayOpen: false});
     }

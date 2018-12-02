@@ -3,10 +3,10 @@ import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
+import tileTypes, { getBGColorType, getColorType } from '../../helpers/tile-types';
+
 import TileWrapper from './TileWrapper';
 import Icon from './Icon';
-
-const innerText = ['', 'BG', 'shape', 'tool', 'clear all', 'settings'];
 
 class SideTray extends React.Component {
   constructor(props) {
@@ -22,83 +22,39 @@ class SideTray extends React.Component {
 
   render() {
     const { height, width } = this.props.size;
-    // const text = 'BG';
-    const icon = <Icon />
-
     const color = 'black';
-    // const color = canvasColor === 'white' || canvasColor === 'yellow' ? colors.black : colors.white;
-    const text = innerText.map((text, i) => (
-       <Text key={i} style={[ styles.tileText, {color} ]}>{text}</Text>
-    ));
+    const tileWrappers = Object.keys(tileTypes).map((tileType, i) => {
+      const text = (
+        <Text style={[ styles.tileText, {color} ]}>
+          {tileTypes[tileType].text}
+        </Text>
+      );
+      const theIcon = tileTypes[tileType].icon
+                    ? <Icon icon={tileTypes[tileType].icon} />
+                    : null;
+      const colorType = getColorType(tileType);
+      const bgColor = getBGColorType(tileType);
+      // const theIcon = tileTypes[tileType].icon;
+      return (
+        <TileWrapper
+          key={i}
+          idx={i}
+          tileType={tileType}
+          colorType={colorType}
+          bgColor={bgColor}
+          setFocus={this.setFocus}
+          focused={this.state.focusedWrapper}
+          sideTrayWidth={width}
+          icon={theIcon}
+          text={text}
+        />
+      )
+    });
     return (
       <View style={[ styles.tray, {height, width} ]}>
-        <TileWrapper
-          idx={1}
-          tileType='color'
-          colorType='activeColor'
-          bgColor={this.props.activeColor}
-          setFocus={this.setFocus}
-          focused={this.state.focusedWrapper}
-          sideTrayWidth={width}
-          // text='color'
-          text={text[0]}
-        />
-        <TileWrapper
-          idx={2}
-          tileType='bg'
-          colorType={'canvasColor'}
-          bgColor={this.props.canvasColor}
-          setFocus={this.setFocus}
-          focused={this.state.focusedWrapper}
-          sideTrayWidth={width}
-          // text='BG'
-          text={text[1]}
-        />
-        <TileWrapper
-          idx={3}
-          tileType='shape'
-          bgColor='green'
-          setFocus={this.setFocus}
-          focused={this.state.focusedWrapper}
-          sideTrayWidth={width}
-          // text='shape'
-          text={text[2]}
-          icon={icon}
-        />
-        <TileWrapper
-          idx={4}
-          tileType='tool'
-          bgColor='green'
-          setFocus={this.setFocus}
-          focused={this.state.focusedWrapper}
-          sideTrayWidth={width}
-          // text='tool'
-          text={text[3]}
-          icon={icon}
-        />
-        <TileWrapper
-          idx={5}
-          tileType='clear'
-          bgColor='green'
-          setFocus={this.setFocus}
-          focused={this.state.focusedWrapper}
-          sideTrayWidth={width}
-          // text='clear all'
-          text={text[4]}
-          icon={icon}
-        />
-        <TileWrapper
-          idx={6}
-          tileType='settings'
-          bgColor='green'
-          setFocus={this.setFocus}
-          focused={this.state.focusedWrapper}
-          sideTrayWidth={width}
-          text={text[5]}
-          icon={icon}
-        />
+        {tileWrappers}
       </View>
-    )
+    );
   }
 };
 
