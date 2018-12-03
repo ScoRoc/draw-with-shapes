@@ -22,29 +22,25 @@ const tileTypes = () => {
       colorType: 'none',
       bgColor: 'green',
       text: 'shape',
-      // icon: 'square'
-      icon: <Icon icon='square' />
+      icon: <Icon name='shape' library='MaterialCommunityIcons' />
     },
     tool: {
       colorType: 'none',
       bgColor: 'green',
       text: 'tool',
-      // icon: 'square'
-      icon: <Icon icon='square' />
+      icon: <Icon name='square' library='MaterialCommunityIcons' />
     },
     clear: {
       colorType: 'none',
       bgColor: 'green',
       text: 'clear all',
-      // icon: 'square'
-      icon: <Icon icon='square' />
+      icon: <Icon name='trash-o' library='FontAwesome' />
     },
     settings: {
       colorType: 'none',
       bgColor: 'green',
       text: 'settings',
-      // icon: 'square'
-      icon: <Icon icon='square' />
+      icon: <Icon name='settings-outline' library='MaterialCommunityIcons' />
     },
   };
   return {
