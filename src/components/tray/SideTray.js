@@ -37,15 +37,13 @@ class SideTray extends React.Component {
           {getText(tileType)}
         </Text>
       );
-      // const theIcon = getTileProperty(tileType, 'icon')
-      //               ? <Icon icon={getIcon(tileType)} />
-      //               : null;
-      // const colorType = getColorType(tileType);
-      // const bgColor = getBGColorType(tileType);
-      // gives same results \/ \/ \/ \/
-      //
-      // const bgColor = getBGColorType(tileType, 'bgColor');
-      // const colorType = getTileProperty(tileType, 'colorType');
+      const sideTrayDisplay = getIcon(tileType)
+                            ? getIcon(tileType)
+                            : (
+                                <Text style={[ styles.tileText, {color} ]}>
+                                  {getText(tileType)}
+                                </Text>
+                              );
       return (
         <TileWrapper
           key={i}
@@ -58,6 +56,7 @@ class SideTray extends React.Component {
           sideTrayWidth={width}
           icon={getIcon(tileType)}
           text={text}
+          sideTrayDisplay={sideTrayDisplay}
         />
       )
     });

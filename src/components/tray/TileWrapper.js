@@ -97,7 +97,8 @@ class TileWrapper extends React.Component {
           height={this.props.height}
           width='100%'
         >
-          {this.props.icon || this.props.text}
+          {/* {this.props.icon || this.props.text} */}
+          {this.props.sideTrayDisplay}
         </Tile>
       </View>
     );
