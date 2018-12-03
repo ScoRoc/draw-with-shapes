@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 
-import tileTypes, { getBGColorType, getColorType } from '../../helpers/tile-types';
+import tileTypes from '../../helpers/tile-types';
 
 import TileWrapper from './TileWrapper';
 import Icon from './Icon';
@@ -21,20 +21,30 @@ class SideTray extends React.Component {
   }
 
   render() {
+    const {
+      allTileTypes,
+      getBGColorType,
+      getColorType,
+      getIcon,
+      getText,
+      getTileProperty,
+      getTileTypes
+    } = tileTypes();
+    console.log('allTileTypes: ', allTileTypes)
     const { height, width } = this.props.size;
     const color = 'black';
-    const tileWrappers = Object.keys(tileTypes).map((tileType, i) => {
+    const tileWrappers = Object.keys( getTileTypes() ).map((tileType, i) => {
       const text = (
         <Text style={[ styles.tileText, {color} ]}>
-          {tileTypes[tileType].text}
+          {getTileTypes()[tileType].text}
         </Text>
       );
-      const theIcon = tileTypes[tileType].icon
-                    ? <Icon icon={tileTypes[tileType].icon} />
+      const theIcon = getTileTypes()[tileType].icon
+                    ? <Icon icon={getTileTypes()[tileType].icon} />
                     : null;
-      const colorType = getColorType(tileType);
+      // const colorType = getColorType(tileType);
+      const colorType = getTileProperty(tileType, 'colorType');
       const bgColor = getBGColorType(tileType);
-      // const theIcon = tileTypes[tileType].icon;
       return (
         <TileWrapper
           key={i}

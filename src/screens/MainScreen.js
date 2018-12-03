@@ -10,8 +10,6 @@ import CanvasFrame from '../components/canvas/CanvasFrame';
 
 export default MainScreen = props => {
 // const MainScreen = props => {
-  // props.testTest('flaka');
-  // console.log('tester: ', props.tester);
 
   const { height, width } = Dimensions.get('window');
   const fraction = Platform.isPad ? 10 : 6;

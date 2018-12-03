@@ -1,11 +1,8 @@
 import store from '../redux/store/store';
 
-// export default tileTypes = () => {
 const tileTypes = () => {
   const { activeColor, canvasColor } = store.getState().main;
-  console.log('activeColor: ', activeColor);
-  console.log('canvasColor: ', canvasColor);
-  const tileTypesObj = {
+  const allTileTypes = {
     color: {
       colorType: 'activeColor',
       bgColor: activeColor,
@@ -43,12 +40,17 @@ const tileTypes = () => {
       icon: 'square'
     },
   };
-  return tileTypesObj;
+  return {
+    getBGColorType: tileType => allTileTypes[tileType].bgColor,
+    getColorType: tileType => allTileTypes[tileType].colorType,
+    getIcon: tileType => allTileTypes[tileType].icon,
+    getText: tileType => allTileTypes[tileType].text,
+    getTileProperty: (tileType, property) => allTileTypes[tileType][property],
+    getTileTypes: () => allTileTypes,
+    allTileTypes: (() => allTileTypes)()
+  };
 };
 
-store.subscribe(tileTypes);
+const unsubscribe = store.subscribe(tileTypes);
 
-export default tileTypes();
-
-export const getColorType = colorType => tileTypes()[colorType].colorType;
-export const getBGColorType = bgColor => tileTypes()[bgColor].bgColor;
+export default tileTypes;
