@@ -1,10 +1,18 @@
 import { combineReducers, createStore } from 'redux';
-import main from '../reducers/main';
+import clear from '../reducers/clear';
 import colors from '../reducers/colors';
+import main from '../reducers/main';
+import settings from '../reducers/settings';
+import shapes from '../reducers/shapes';
+import tools from '../reducers/tools';
 
 const rootReducer = combineReducers({
+  clear,
+  colors,
   main,
-  colors
+  settings,
+  shapes,
+  tools,
 });
 
 export default store = createStore(rootReducer);

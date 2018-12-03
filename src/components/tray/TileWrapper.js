@@ -8,6 +8,15 @@ import { setColor } from '../../redux/actions/actions';
 import SlideOutTray from './SlideOutTray';
 import Tile from './Tile';
 
+const tileTypeMap = {
+  color: 'colors',
+  bg: 'colors',
+  shape: 'shapes',
+  tool: 'tools',
+  clear: 'clear',
+  settings: 'settings',
+};
+
 class TileWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -57,7 +66,9 @@ class TileWrapper extends React.Component {
   render() {
     const { animatedWidth } = this.state;
     const { tileType } = this.props;
-    const tiles = Object.values(this.props.colors).map((color, i) => {
+    console.log('tileType: ', tileType);
+    const mapValues = this.props[tileTypeMap[tileType]];
+    const tiles = Object.values(mapValues).map((color, i) => {
       let bgColor = tileType === 'color' || tileType === 'bg' ? color : 'green';
       return (
         <Tile
@@ -71,7 +82,6 @@ class TileWrapper extends React.Component {
         </Tile>
       );
     });
-    // const defaultTileBGColor = 'green';
     return (
       <View>
         <Animated.View style={[ styles.slideOutTray, {transform: [{translateX: animatedWidth}]} ]}>
@@ -90,8 +100,8 @@ class TileWrapper extends React.Component {
           {this.props.icon || this.props.text}
         </Tile>
       </View>
-    )
-  }
+    );
+  };
 };
 
 const styles = EStyleSheet.create({
@@ -101,13 +111,20 @@ const styles = EStyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return { height: state.main.tileHeight, colors: state.colors }
+  return {
+    clear: state.clear,
+    colors: state.colors,
+    height: state.main.tileHeight,
+    settings: state.settings,
+    shapes: state.shapes,
+    tools: state.tools,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     setColor: (color, colorType) => dispatch(setColor(color, colorType))
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TileWrapper);

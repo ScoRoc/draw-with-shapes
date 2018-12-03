@@ -10,37 +10,37 @@ const tileTypes = () => {
       colorType: 'activeColor',
       bgColor: activeColor,
       text: 'color',
-      icon: null
+      icon: null,
     },
     bg: {
       colorType: 'canvasColor',
       bgColor: canvasColor,
       text: 'BG',
-      icon: null
+      icon: null,
     },
     shape: {
       colorType: 'none',
       bgColor: 'green',
       text: 'shape',
-      icon: <Icon name='shape' library='MaterialCommunityIcons' />
+      icon: <Icon name='square' library='MaterialCommunityIcons' />,
     },
     tool: {
       colorType: 'none',
       bgColor: 'green',
       text: 'tool',
-      icon: <Icon name='square' library='MaterialCommunityIcons' />
+      icon: <Icon name='shape' library='MaterialCommunityIcons' />,
     },
     clear: {
       colorType: 'none',
       bgColor: 'green',
       text: 'clear all',
-      icon: <Icon name='trash-o' library='FontAwesome' />
+      icon: <Icon name='trash-o' library='FontAwesome' defaultColor='black' />,
     },
     settings: {
       colorType: 'none',
       bgColor: 'green',
       text: 'settings',
-      icon: <Icon name='settings-outline' library='MaterialCommunityIcons' />
+      icon: <Icon name='settings-outline' library='MaterialCommunityIcons' defaultColor='black' />,
     },
   };
   return {
