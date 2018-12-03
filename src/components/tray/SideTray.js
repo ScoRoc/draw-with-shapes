@@ -28,34 +28,35 @@ class SideTray extends React.Component {
       getIcon,
       getText,
       getTileProperty,
-      getTileTypes
     } = tileTypes();
-    console.log('allTileTypes: ', allTileTypes)
     const { height, width } = this.props.size;
     const color = 'black';
-    const tileWrappers = Object.keys( getTileTypes() ).map((tileType, i) => {
+    const tileWrappers = Object.keys(allTileTypes).map((tileType, i) => {
       const text = (
         <Text style={[ styles.tileText, {color} ]}>
-          {getTileTypes()[tileType].text}
+          {getText(tileType)}
         </Text>
       );
-      const theIcon = getTileTypes()[tileType].icon
-                    ? <Icon icon={getTileTypes()[tileType].icon} />
-                    : null;
+      // const theIcon = getTileProperty(tileType, 'icon')
+      //               ? <Icon icon={getIcon(tileType)} />
+      //               : null;
       // const colorType = getColorType(tileType);
-      const colorType = getTileProperty(tileType, 'colorType');
-      const bgColor = getBGColorType(tileType);
+      // const bgColor = getBGColorType(tileType);
+      // gives same results \/ \/ \/ \/
+      //
+      // const bgColor = getBGColorType(tileType, 'bgColor');
+      // const colorType = getTileProperty(tileType, 'colorType');
       return (
         <TileWrapper
           key={i}
           idx={i}
           tileType={tileType}
-          colorType={colorType}
-          bgColor={bgColor}
+          colorType={getColorType(tileType)}
+          bgColor={getBGColorType(tileType)}
           setFocus={this.setFocus}
           focused={this.state.focusedWrapper}
           sideTrayWidth={width}
-          icon={theIcon}
+          icon={getIcon(tileType)}
           text={text}
         />
       )
